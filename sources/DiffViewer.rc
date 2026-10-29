@@ -1,0 +1,200 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+#undef APSTUDIO_READONLY_SYMBOLS
+
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+/////////////////////////////////////////////////////////////////////////////
+// Icons
+
+IDI_MAIN        ICON "res\\DiffViewer.ico"
+IDI_FILES       ICON "res\\Files_16x16.ico"
+IDI_FOLDER      ICON "res\\Folder_16x16.ico"
+IDI_PULLREQ     ICON "res\\PullRequest_16x16.ico"
+IDI_REFRESH     ICON "res\\Refresh_16x16.ico"
+IDI_PREV        ICON "res\\Prev_16x16.ico"
+IDI_NEXT        ICON "res\\Next_16x16.ico"
+IDI_FIRST       ICON "res\\First_16x16.ico"
+IDI_LAST        ICON "res\\Last_16x16.ico"
+IDI_SWAP        ICON "res\\Swap_16x16.ico"
+IDI_WHITESPACE  ICON "res\\Whitespace_16x16.ico"
+IDI_HELP        ICON "res\\Help_16x16.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+// Menu
+
+IDM_MAIN MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "Compare &Files...\tCtrl+O",       ID_FILE_COMPARE_FILES
+        MENUITEM "Compare F&olders...\tCtrl+D",     ID_FILE_COMPARE_FOLDERS
+        MENUITEM "Open &Pull Request...\tCtrl+P",   ID_FILE_OPEN_PR
+        MENUITEM SEPARATOR
+        MENUITEM "&Refresh\tF5",                    ID_FILE_REFRESH
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit\tAlt+F4",                   IDM_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Copy\tCtrl+C",                   ID_EDIT_COPY
+        MENUITEM "Select &All\tCtrl+A",             ID_EDIT_SELECTALL
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&First Difference\tCtrl+F8",      ID_VIEW_FIRST_DIFF
+        MENUITEM "&Previous Difference\tShift+F8",  ID_VIEW_PREV_DIFF
+        MENUITEM "&Next Difference\tF8",            ID_VIEW_NEXT_DIFF
+        MENUITEM "&Last Difference\tCtrl+Shift+F8", ID_VIEW_LAST_DIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&Ignore Whitespace",              ID_VIEW_IGNORE_WS
+        MENUITEM "Show &Identical Files",           ID_VIEW_SHOW_IDENTICAL
+        MENUITEM SEPARATOR
+        MENUITEM "&Swap Sides",                     ID_VIEW_SWAP
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About...\tF1",                   IDM_ABOUT
+    END
+END
+
+IDR_VIEW_CONTEXT_MENU MENU
+BEGIN
+    POPUP ""
+    BEGIN
+        MENUITEM "&Copy\tCtrl+C",                   ID_EDIT_COPY
+        MENUITEM "Select &All\tCtrl+A",             ID_EDIT_SELECTALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Previous Difference\tShift+F8",  ID_VIEW_PREV_DIFF
+        MENUITEM "&Next Difference\tF8",            ID_VIEW_NEXT_DIFF
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+// Accelerator
+
+IDR_MAIN_ACCEL ACCELERATORS
+BEGIN
+    VK_F1,              IDM_ABOUT,                  VIRTKEY, NOINVERT
+    VK_F4,              IDM_EXIT,                   VIRTKEY, ALT, NOINVERT
+    VK_F5,              ID_FILE_REFRESH,            VIRTKEY, NOINVERT
+    "O",                ID_FILE_COMPARE_FILES,      VIRTKEY, CONTROL, NOINVERT
+    "D",                ID_FILE_COMPARE_FOLDERS,    VIRTKEY, CONTROL, NOINVERT
+    "P",                ID_FILE_OPEN_PR,            VIRTKEY, CONTROL, NOINVERT
+    "C",                ID_EDIT_COPY,               VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,          ID_EDIT_COPY,               VIRTKEY, CONTROL, NOINVERT
+    "A",                ID_EDIT_SELECTALL,          VIRTKEY, CONTROL, NOINVERT
+    VK_F8,              ID_VIEW_NEXT_DIFF,          VIRTKEY, NOINVERT
+    VK_F8,              ID_VIEW_PREV_DIFF,          VIRTKEY, SHIFT, NOINVERT
+    VK_F8,              ID_VIEW_FIRST_DIFF,         VIRTKEY, CONTROL, NOINVERT
+    VK_F8,              ID_VIEW_LAST_DIFF,          VIRTKEY, CONTROL, SHIFT, NOINVERT
+    VK_DOWN,            ID_VIEW_NEXT_DIFF,          VIRTKEY, ALT, NOINVERT
+    VK_UP,              ID_VIEW_PREV_DIFF,          VIRTKEY, ALT, NOINVERT
+END
+
+/////////////////////////////////////////////////////////////////////////////
+// Dialogs
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 200, 70
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About DiffViewer"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDI_MAIN, IDC_STATIC, 14, 14, 20, 20
+    LTEXT           "DiffViewer, Version 1.0", IDC_STATIC, 42, 12, 150, 8, SS_NOPREFIX
+    LTEXT           "Side-by-side comparison of files, folders and GitHub pull requests.", IDC_STATIC, 42, 24, 150, 18
+    LTEXT           "Built with Yaswl.", IDC_STATIC, 42, 42, 150, 8
+    DEFPUSHBUTTON   "OK", IDOK, 143, 49, 50, 14, WS_GROUP
+END
+
+IDD_COMPARE DIALOGEX 0, 0, 330, 96
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_ACCEPTFILES
+CAPTION "Compare"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "&Left:", IDC_STATIC, 7, 10, 30, 8
+    EDITTEXT        IDC_LEFT_PATH, 40, 7, 225, 14, ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...", IDC_BROWSE_LEFT, 270, 7, 53, 14
+    LTEXT           "&Right:", IDC_STATIC, 7, 30, 30, 8
+    EDITTEXT        IDC_RIGHT_PATH, 40, 27, 225, 14, ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...", IDC_BROWSE_RIGHT, 270, 27, 53, 14
+    LTEXT           "", IDC_HINT, 7, 50, 316, 18
+    PUSHBUTTON      "&Swap", IDC_SWAP, 7, 75, 50, 14
+    DEFPUSHBUTTON   "OK", IDOK, 217, 75, 50, 14
+    PUSHBUTTON      "Cancel", IDCANCEL, 273, 75, 50, 14
+END
+
+IDD_PULLREQUEST DIALOGEX 0, 0, 330, 84
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Open Pull Request"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Pull request &URL:", IDC_STATIC, 7, 7, 120, 8
+    EDITTEXT        IDC_PR_URL, 7, 18, 316, 14, ES_AUTOHSCROLL
+    LTEXT           "Example: https://github.com/owner/repo/pull/123\nPrivate repositories need a token: GITHUB_TOKEN / GH_TOKEN environment variable, or a logged-in GitHub CLI (gh auth login).", IDC_HINT, 7, 36, 316, 26
+    DEFPUSHBUTTON   "OK", IDOK, 217, 63, 50, 14
+    PUSHBUTTON      "Cancel", IDCANCEL, 273, 63, 50, 14
+END
+
+/////////////////////////////////////////////////////////////////////////////
+// String Table
+
+STRINGTABLE
+BEGIN
+    IDS_APP_TITLE               "DiffViewer"
+    IDS_SYSTEM_ERROR            "An error has occurred in system services.\nOS error: "
+    IDS_READY                   "Ready"
+    IDS_NO_DIFFS                "No differences"
+    IDS_DIFF_OF                 "Difference %d of %d"
+    IDS_DIFFS_COUNT             "%d differences"
+    IDS_IDENTICAL               "Files are identical"
+    IDS_COMPARE_FILES_TITLE     "Compare Files"
+    IDS_COMPARE_FOLDERS_TITLE   "Compare Folders"
+    IDS_ERR_LOAD                "Cannot load the selected item:\n%s"
+    IDS_LEFT_ONLY               "left only"
+    IDS_RIGHT_ONLY              "right only"
+    IDS_MISSING                 "(missing)"
+    IDS_FOLDER_SUMMARY          "%d different, %d left only, %d right only, %d identical"
+    IDS_PR_SUMMARY              "%d files changed"
+    IDS_NO_SESSION              "Open two files, two folders or a pull request to start (File menu, command line or drag and drop)."
+    IDS_SELECT_FILE             "Select a file in the tree to see its differences."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_BOTH_PATHS          "Please specify both the left and the right path."
+    IDS_ERR_NOT_FOUND           "Path not found:\n%s"
+    IDS_ERR_PR_URL              "Unrecognized pull request URL. Expected something like https://github.com/owner/repo/pull/123"
+    IDS_DROP_HINT_FILES         "Tip: you can also drop two files on the main window."
+    IDS_DROP_HINT_FOLDERS       "Tip: you can also drop two folders on the main window. The folders .git, .svn and .hg are skipped."
+    IDS_RENAMED_FROM            "renamed from %s"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_COMPARE_FILES       "Compare two files side by side\nCompare Files"
+    ID_FILE_COMPARE_FOLDERS     "Compare two folders recursively\nCompare Folders"
+    ID_FILE_OPEN_PR             "Open a GitHub pull request by URL\nOpen Pull Request"
+    ID_FILE_REFRESH             "Reload the current comparison\nRefresh"
+    IDM_EXIT                    "Quits the application\nExit"
+    ID_EDIT_COPY                "Copy the selected lines to the Clipboard\nCopy"
+    ID_EDIT_SELECTALL           "Select all lines of the active side\nSelect All"
+    ID_VIEW_FIRST_DIFF          "Go to the first difference\nFirst Difference"
+    ID_VIEW_PREV_DIFF           "Go to the previous difference\nPrevious Difference"
+    ID_VIEW_NEXT_DIFF           "Go to the next difference\nNext Difference"
+    ID_VIEW_LAST_DIFF           "Go to the last difference\nLast Difference"
+    ID_VIEW_IGNORE_WS           "Ignore whitespace changes when comparing lines\nIgnore Whitespace"
+    ID_VIEW_SHOW_IDENTICAL      "Show or hide identical files in the tree\nShow Identical Files"
+    ID_VIEW_SWAP                "Swap the left and the right side\nSwap Sides"
+    IDM_ABOUT                   "Display the program information\nAbout"
+END
