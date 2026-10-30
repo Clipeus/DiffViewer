@@ -9,6 +9,12 @@ A small native Windows (Win32, C++17) side-by-side diff viewer built on the
 * **Right**: two synchronized panes with line numbers, colored rows, word-level
   highlights inside changed lines, filler rows for alignment and an overview map on the right edge.
 
+## Download
+
+A ready-to-run build is on the [Releases](https://github.com/Clipeus/DiffViewer/releases) page:
+[DiffViewer 1.0.0 (x64)](https://github.com/Clipeus/DiffViewer/releases/tag/v1.0.0).
+Unzip and run `DiffViewer.exe`; no installation and no dependencies besides Windows 10/11.
+
 ## What can be compared
 
 | Mode | How |
